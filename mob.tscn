@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://cclbpkyc4j2e7"]
+
+[ext_resource type="Script" path="res://mob.gd" id="1_j5h2d"]
+[ext_resource type="Texture2D" uid="uid://yui68hhqmqkd" path="res://art/enemyFlyingAlt_1.png" id="1_jwi6v"]
+[ext_resource type="Texture2D" uid="uid://lasw1tvydxfw" path="res://art/enemyFlyingAlt_2.png" id="2_ct4jw"]
+[ext_resource type="Texture2D" uid="uid://beekbrbxjrheq" path="res://art/enemySwimming_1.png" id="3_0lfd6"]
+[ext_resource type="Texture2D" uid="uid://cb2u3hfd7hx3c" path="res://art/enemySwimming_2.png" id="4_rvxdb"]
+[ext_resource type="Texture2D" uid="uid://dbarwgn5hpm6q" path="res://art/enemyWalking_1.png" id="5_ichh2"]
+[ext_resource type="Texture2D" uid="uid://gtw7neg8uoan" path="res://art/enemyWalking_2.png" id="6_dyvo4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_orynn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jwi6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ct4jw")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0lfd6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rvxdb")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ichh2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dyvo4")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ibafa"]
+radius = 36.0
+height = 98.0
+
+[node name="Mob" type="RigidBody2D" groups=["mobs"]]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_j5h2d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_orynn")
+animation = &"fly"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ibafa")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
